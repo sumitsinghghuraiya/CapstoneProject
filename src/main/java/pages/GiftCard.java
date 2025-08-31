@@ -30,14 +30,14 @@ public class GiftCard {
 
 	@FindBy(xpath = "//div[@data-result-item='true']")
 	private WebElement firstCity;
-    @FindBy(xpath = "//div[@class='sc-1or3vea-19 bfNncl']//a[@href='/giftcards' and text()='Gift Cards']")
-    private WebElement giftCardSectionLink;
+    @FindBy(xpath = "(//a[text()='ListYourShow']/following-sibling::a)[3]")
+    private WebElement giftCardIcon;
 
     @FindBy(xpath = "//div[text()='Check Gift Card Balance']")
-    private WebElement checkBalanceIcon;
+    private WebElement checkBalance;
 
     @FindBy(xpath = "//input[@id='gift-voucher']")
-    private WebElement voucherCodeInput;
+    private WebElement voucherInput;
 
     @FindBy(xpath = "//div[@class='sc-zgl7vj-7 dMHyDB']")
     private WebElement checkBalanceButton;
@@ -51,22 +51,22 @@ public class GiftCard {
 	    wait.until(ExpectedConditions.elementToBeClickable(firstCity)).click();
 	}
     public void navigateToGiftCardSection() {
-    	WaitUtils.waitForElementClickable(driver, giftCardSectionLink).click();
+    	WaitUtils.waitForElementClickable(driver, giftCardIcon).click();
     }
 
     public boolean isCheckBalanceIconDisplayed() {
     	JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].scrollIntoView(true);", checkBalanceIcon);
-        return checkBalanceIcon.isDisplayed();
+        js.executeScript("arguments[0].scrollIntoView(true);", checkBalance);
+        return checkBalance.isDisplayed();
     }
 
     public void clickCheckBalanceIcon() {
-    	WaitUtils.waitForElementClickable(driver, checkBalanceIcon).click();;
+    	WaitUtils.waitForElementClickable(driver, checkBalance).click();;
     }
 
     public void enterVoucherCode(String code) {
-    	WaitUtils.waitForElementVisible(driver,voucherCodeInput).clear();
-        voucherCodeInput.sendKeys(code);
+    	WaitUtils.waitForElementVisible(driver,voucherInput).clear();
+        voucherInput.sendKeys(code);
     }
 
     public void clickCheckBalanceButton() {
